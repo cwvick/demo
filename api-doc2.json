@@ -20,7 +20,7 @@
     "description": "O Auth Store Coupon Controller"
   }],
   "paths": {
-    "/pet": {
+    "/rest/oauth/service/store/coupon/v1/capture": {
       "post": {
         "tags": ["o-auth-store-coupon-controller"],
         "summary": "Add a new pet to the store",
@@ -30,52 +30,37 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [{
           "in": "body",
-          "name": "body",
-          "description": "Pet object that needs to be added to the store",
-          "required": true,
+          "name": "clientConfig",
+          "description": "clientConfig",
+          "required": false,
           "schema": {
-            "$ref": "#/definitions/Pet"
+            "$ref": "#/definitions/ClientConfig"
           }
-        }],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [{
-          "petstore_auth": ["write:pets", "read:pets"]
-        }]
-      },
-      "put": {
-        "tags": ["o-auth-store-coupon-controller"],
-        "summary": "Update an existing pet",
-        "description": "",
-        "operationId": "updatePet",
-        "consumes": ["application/json", "application/xml"],
-        "produces": ["application/xml", "application/json"],
-        "parameters": [{
+        }, {
           "in": "body",
-          "name": "body",
-          "description": "Pet object that needs to be added to the store",
+          "name": "accountIdentityId",
+          "description": "accountIdentityId",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/AccountIdentityId"
+          }
+        }, {
+          "in": "body",
+          "name": "captureCouponRequest",
+          "description": "captureCouponRequest",
           "required": true,
           "schema": {
-            "$ref": "#/definitions/Pet"
+            "$ref": "#/definitions/CaptureCouponRequest"
           }
         }],
         "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Pet not found"
-          },
-          "405": {
-            "description": "Validation exception"
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
           }
-        },
-        "security": [{
-          "petstore_auth": ["write:pets", "read:pets"]
-        }]
+        }
       }
     }
   },
