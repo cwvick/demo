@@ -29,7 +29,7 @@
         "produces": ["*/*"],
         "parameters": [{
           "in": "body",
-          "name": "body222222",
+          "name": "body",
           "description": "Pet object that needs to be added to the store",
           "required": true,
           "schema": {
