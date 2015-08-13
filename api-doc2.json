@@ -35,6 +35,14 @@
           "schema": {
             "$ref": "#/definitions/ClientConfig"
           }
+        }, {
+          "in": "body",
+          "name": "accountIdentityId",
+          "description": "accountIdentityId",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/AccountIdentityId"
+          }
         }],
         "responses": {
           "200": {
