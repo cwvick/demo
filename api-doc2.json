@@ -29,11 +29,11 @@
         "produces": ["*/*"],
         "parameters": [{
           "in": "body",
-          "name": "body",
-          "description": "Pet object that needs to be added to the store",
-          "required": true,
+          "name": "clientConfig",
+          "description": "clientConfig",
+          "required": false,
           "schema": {
-            "$ref": "#/definitions/Pet"
+            "$ref": "#/definitions/ClientConfig"
           }
         }],
         "responses": {
