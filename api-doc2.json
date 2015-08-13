@@ -43,6 +43,14 @@
           "schema": {
             "$ref": "#/definitions/AccountIdentityId"
           }
+        }, {
+          "in": "body",
+          "name": "captureCouponRequest",
+          "description": "captureCouponRequest",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/CaptureCouponRequest"
+          }
         }],
         "responses": {
           "200": {
