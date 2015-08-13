@@ -60,7 +60,10 @@
               "type": "object"
             }
           }
-        }
+        },
+        "security": [{
+          "petstore_auth": ["write:pets", "read:pets"]
+        }]
       }
     }
   },
