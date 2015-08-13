@@ -16,217 +16,47 @@
   "host": "digitalextremes.qa.pok.fatfoogoo.com",
   "basePath": "/",
   "tags": [{
-    "name": "transaction-service-controller",
-    "description": "Transaction Service Controller"
+    "name": "o-auth-store-coupon-controller",
+    "description": "O Auth Store Coupon Controller"
   }],
   "paths": {
-    "/rest/services/transaction/v1/": {
+    "/rest/oauth/service/store/coupon/v1/capture": {
       "post": {
-        "tags": ["transaction-service-controller"],
-        "summary": "createPayment",
-        "operationId": "createPaymentUsingPOST",
-        "consumes": ["application/json"],
+        "tags": ["o-auth-store-coupon-controller"],
+        "summary": "captureCoupons",
+        "operationId": "captureCouponsUsingPOST",
+        "consumes": ["text/html", "application/*", "text/plain"],
         "produces": ["*/*"],
         "parameters": [{
           "in": "body",
-          "name": "createPaymentTransactionParams",
-          "description": "createPaymentTransactionParams",
+          "name": "clientConfig",
+          "description": "clientConfig",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/ClientConfig"
+          }
+        }, {
+          "in": "body",
+          "name": "accountIdentityId",
+          "description": "accountIdentityId",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/AccountIdentityId"
+          }
+        }, {
+          "in": "body",
+          "name": "captureCouponRequest",
+          "description": "captureCouponRequest",
           "required": true,
           "schema": {
-            "$ref": "#/definitions/CreatePaymentTransactionParams"
+            "$ref": "#/definitions/CaptureCouponRequest"
           }
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/PaymentTransactionDataRest"
-            }
-          }
-        }
-      }
-    },
-    "/rest/services/transaction/v1/details": {
-      "get": {
-        "tags": ["transaction-service-controller"],
-        "summary": "getDetails",
-        "operationId": "getDetailsUsingGET",
-        "consumes": ["application/json"],
-        "produces": ["*/*"],
-        "parameters": [{
-          "name": "transactionId",
-          "in": "query",
-          "description": "transactionId",
-          "required": false,
-          "type": "string"
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/PaymentTransactionData"
-            }
-          },
-          "500": {
-            "description": "500 message",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/rest/services/transaction/v1/details/sample": {
-      "get": {
-        "tags": ["transaction-service-controller"],
-        "summary": "getDetailsSample",
-        "operationId": "getDetailsSampleUsingGET",
-        "consumes": ["application/json"],
-        "produces": ["*/*"],
-        "parameters": [{
-          "name": "transactionId",
-          "in": "query",
-          "description": "transactionId",
-          "required": false,
-          "type": "string"
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/ResponseHolder«PaymentTransactionData»"
-            }
-          },
-          "500": {
-            "description": "500 message",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/rest/services/transaction/v1/errorresponse": {
-      "get": {
-        "tags": ["transaction-service-controller"],
-        "summary": "getErrorResponse",
-        "operationId": "getErrorResponseUsingGET_17",
-        "consumes": ["application/json"],
-        "produces": ["*/*"],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/CreateEventResponse"
-            }
-          },
-          "500": {
-            "description": "500 message",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/rest/services/transaction/v1/list": {
-      "get": {
-        "tags": ["transaction-service-controller"],
-        "summary": "findPaymentTransaction",
-        "operationId": "findPaymentTransactionUsingGET",
-        "consumes": ["application/json"],
-        "produces": ["*/*"],
-        "parameters": [{
-          "name": "referenceId",
-          "in": "query",
-          "description": "referenceId",
-          "required": true,
-          "type": "string"
-        }, {
-          "name": "externalIdentityId",
-          "in": "query",
-          "description": "externalIdentityId",
-          "required": false,
-          "type": "string"
-        }, {
-          "name": "language",
-          "in": "query",
-          "description": "language",
-          "required": true,
-          "type": "string"
-        }, {
-          "name": "from",
-          "in": "query",
-          "description": "from",
-          "required": false,
-          "type": "integer",
-          "format": "int64"
-        }, {
-          "name": "count",
-          "in": "query",
-          "description": "count",
-          "required": false,
-          "type": "integer",
-          "format": "int64"
-        }, {
-          "name": "orderBy",
-          "in": "query",
-          "description": "orderBy",
-          "required": false,
-          "type": "string"
-        }, {
-          "name": "ascending",
-          "in": "query",
-          "description": "ascending",
-          "required": false,
-          "type": "boolean"
-        }, {
-          "name": "virtual",
-          "in": "query",
-          "description": "virtual",
-          "required": false,
-          "type": "boolean"
-        }, {
-          "name": "countTotal",
-          "in": "query",
-          "description": "countTotal",
-          "required": false,
-          "type": "boolean"
         }],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
               "type": "object"
-            }
-          },
-          "500": {
-            "description": "500 message",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/rest/services/transaction/v1/ping": {
-      "get": {
-        "tags": ["transaction-service-controller"],
-        "summary": "ping",
-        "operationId": "pingUsingGET_17",
-        "consumes": ["application/json"],
-        "produces": ["*/*"],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/GenericResponse"
-            }
-          },
-          "500": {
-            "description": "500 message",
-            "schema": {
-              "$ref": "#/definitions/Error"
             }
           }
         }
